@@ -1,0 +1,48 @@
+---
+title: RMarkdown Template
+author: L. Gulliver | May 1707
+abstract: \emph{This is an example template for an RMarkdown document.}
+header-includes:
+   - \usepackage{graphicx,verbatim}
+   - \renewcommand{\abstractname}{}
+geometry: margin=0.75in
+output: pdf_document
+---
+
+# Introduction
+This is an example template.
+
+## R code
+
+We can include
+
+```{r,comment=NA}
+ACharacterVector <- c("some","code","in","a","code","chunk.",
+                      "For example,",
+                      "this prints out the current date and time: \n")
+cat(paste(c(ACharacterVector,date()), collapse=" "))
+```
+
+As nice as it is for pedagogical purposes to show the code in these chunks, is also possible -- and indeed, typically more professional looking -- to hide the code using the chunk option \verb+echo=FALSE+, and then to print its result out using inline code.
+
+```{r, echo=FALSE}
+ThisIsTheDate <- date()
+```
+ For example, the date and time is now `r ThisIsTheDate`.
+
+Notice that when the code chunks are hidden, we can automatically display the code in an appendix by including the code at the end of the .Rmd file used to creat this document.
+
+We can include plots too, for example the one below.
+
+```{r, echo=FALSE, fig.height = 3, fig.width = 4, fig.align = "center"}
+plot(dlnorm, main="This is a plot!!")
+```
+
+\clearpage
+
+\hrulefill
+
+\begin{center} Appendix: R Script \end{center}
+
+```{r, ref.label=knitr::all_labels(),echo=TRUE,eval=FALSE}
+```

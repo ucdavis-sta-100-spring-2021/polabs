@@ -1,0 +1,40 @@
+---
+title: "STA100 Lab1"
+author: "Po"
+date: "3/30/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Hi! - Chi Po Choi
+Hello everyone! My name is Po. I did bachelor+master in mathematics a while ago in Hong Kong, with some exposure in geometry (with applications in medical imagining, if have to make it related to bio-ish...) before shifting gears to do statistics here in Davis, working on something related to the Big Bang. I am also trying to get into data science things in Bay area. I am excited to meet you all!
+
+- Chi Po Choi
+- Email: cpchoi@ucdavis.edu (heavily titled [STA100] but generally prefer piazza or office hours )
+- Office Hour: Maybe sometime afternoon or evening Tuesday?
+
+# R, RStudio and RMarkdown
+
+### Install R and RStudio
+
+1. Go to https://cloud.r-project.org/ and download+install *R* by following instructions corresponding to your operation system (MacOS, Windows or Linux).
+
+2. Go to https://www.rstudio.com/products/rstudio/ and download+install **RStudio Desktop** corresponding to your operation system (MacOS, Windows or Linux).
+
+3. In case the above not working, here are some other/advanced ways to have RStudio ready in your hands: [RStudio Cloud](https://rstudio.cloud), [Rstudio Server Docker](https://hub.docker.com/r/rocker/rstudio), or maybe [RStudio in Binder](https://mybinder.org/) [![Binder](http://mybinder.org/badge_logo.svg)](http://mybinder.org/v2/gh/ucdavis-sta-100-spring-2021/polabs/main?urlpath=rstudio)
+
+### RMarkdown 
+
+1. ↖ Click **New File** then new **R Markdown**. Click Yes to the pop-up to install all necessary R packages. And proceed to create your first R Markdown file.
+
+   In cases somethings goes wrong, try following [R Markdown: The Definitive Guide -> Installation](https://bookdown.org/yihui/rmarkdown/installation.html) to manually install R packages `rmarkdown` and `tinytex`. 
+
+2. Save and Knit into html and pdf. ![Knit](https://upload.wikimedia.org/wikipedia/commons/4/46/RStudio_knit_icon.png){width=10%}
+
+3. Get the `template.Rmd` in [Files/templates at STA100 Canvas site ](https://canvas.ucdavis.edu/courses/556874/files/folder/templates) . Try to load it into RStudio and Knit into pdf.
+
+4. For more info, visit https://rmarkdown.rstudio.com/ .
+
