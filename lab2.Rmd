@@ -1,0 +1,156 @@
+---
+title: "STA100 Lab1"
+author: "Po"
+date: "4/6/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+options(width = 100)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# R and RStudio
+
+Follow the below instructions to make yourself comfortable in using R/RStudio for statistical/scientific computing.
+
+#### Scientific computing
+
+- In **Console**, type and enter `1+1` and you will get
+  ```{r}
+  1+1
+  ```
+
+- Try `2.1*(3.7+4.9)/5.2`, `sin(pi/3)`, `exp(0.8)`, `log(1.0)` and anything. You can now throw away your TI-who-cares calculator!
+
+#### Working directory
+
+Working directory is the default folder in which files are saved and read.
+
+- In the **Files** tab, find/create a folder for your STA100 work. Click **More** then **Set As Working Directory**.
+
+- Download the `template.Rmd` in [Files/templates at STA100 Canvas site ](https://canvas.ucdavis.edu/courses/556874/files/folder/templates) and save it into your working directory. Then, open it by clicking on the `template.Rmd` showed in **Files** tab.
+
+- **Knit** the `template.Rmd` into .pdf and .html respectively. The .pdf and .html file will appear alongside the `template.Rmd`.
+
+#### R scripts
+
+- Click the "little green plus icon" and select **R Script**. Then you obtain a notebook that for your to put R codes. Type some codes, for example
+  ```{r}
+  x <- 10.5
+  y <- 8.1
+  z <- x + y
+  print(z)
+  ```
+  Click **Source** to and see the result `18.6` in **Console**.
+
+- You can also **Run** line by line. Put your cursor to the line your want to run and click **Run**. You can also use hot-key **Command+Enter** in mac (or **Control+Enter** in Windows?).
+
+- Click the floppy icon to save your R script in your working directory. Usually we save R scripts with file extension `.R`, for example, `the_best_script_ever.R`. Now you can shut down your computer and go out to enjoy the sunshine! See you all next week!
+
+- Next week, open your script and work on it again.
+
+#### Read data
+
+R has many built-in functions to read data, for example, `read.table()`.
+
+- Let's try to read the infamous [Fisher's Iris data set](https://en.wikipedia.org/wiki/Iris_flower_data_set).
+
+- Go to the [UCI Machine Learning Repository page of Iris Data Set](https://archive.ics.uci.edu/ml/datasets/Iris). Click the link **Data Folder** and then download the two files `iris.data` and `iris.names`, and then save them into your working directory. T
+  ```{r}
+  lab2_data <- read.table("iris.data", sep = ",")
+  ```
+  Good job! You have load the data into R. Look the the **Environment** tab. You can see we have just created a variable named `lab2_data`. Click on it and peek what is inside!
+
+- Ops, what are the columns `V1`, `V2`, `V3`, `V4` and `V5`? Open then text file `iris.names` and read the description! They are actually 
+  ```
+     1. sepal length in cm
+     2. sepal width in cm
+     3. petal length in cm
+     4. petal width in cm
+     5. class: 
+        -- Iris Setosa
+        -- Iris Versicolour
+        -- Iris Virginica
+  ```
+  Rename the columns:
+  ```{r}
+  colnames(lab2_data) <- c("sepal_length", "sepal_width", "petal_length", "petal_width", "class")
+  ```
+  Check `lab2_data` again to see the change.
+  
+- Put the codes
+  ```{r eval=FALSE}
+  lab2_data <- read.table("iris.data", sep = ",")
+  colnames(lab2_data) <- c("sepal_length", "sepal_width", "petal_length", "petal_width", "class")
+  ```
+  into your R script and save it! Now you can shut down your computer and go out to enjoy the sunshine! See you all next week!
+
+#### Mean and standard deviation
+  
+- To access a column in a data frame, for example the `sepal_length` column in `lab2_data`, type `lab2_data$sepal_length` or `lab2_data["sepal_length"]`.
+
+- Let's compute the mean and standard deviation of "sepal length" with functions `mean()` and `sd()`:
+  ```{r }
+  mean(lab2_data$sepal_length)
+  ```
+  ```{r }
+  sd(lab2_data$sepal_length)
+  ```
+
+- R has lots of built-in functions for statistics. For example, the function `summary()` show you:
+  ```{r}
+  summary(lab2_data)
+  ```
+  
+#### Histogram
+
+- Let's plot a histogram.
+  ```{r}
+  hist(lab2_data$sepal_length,
+       main = "Iris Data Set: Sepal Length in cm",
+       xlab = "cm")
+  ```
+
+#### Help/Documentation
+
+Read the R Documentation of the functions you learn today. Enter the following codes, one by one, and read the corresponding documentation/help in the **Help** tab.
+```{r}
+?sin
+```
+```{r}
+?exp
+```
+```{r}
+?log
+```
+```{r}
+?read.table
+```
+```{r}
+?colnames
+```
+```{r}
+?mean
+```
+```{r}
+?sd
+```
+```{r}
+?summary
+```
+```{r}
+?hist
+```
+
+How Po knows all those built-in functions in R?
+
+- Way 1: Google it
+
+- Way 2: Read R Help/Documentation
+
+> Give a man a fish and you feed him for a day; Teach a man to fish and you feed him for a lifetime.
+
+| Po        | Codes in labs | Google   | R Documentation |
+|-----------|---------------|----------|-----------------|
+| Fisherman | Fish          | Fish Rod | Sea             |
