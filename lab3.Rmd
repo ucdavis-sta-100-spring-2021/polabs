@@ -1,7 +1,7 @@
 ---
-title: "STA100 Lab2"
+title: "STA100 Lab3"
 author: "Po"
-date: "4/6/2021"
+date: "4/13/2021"
 output: html_document
 ---
 
@@ -14,41 +14,15 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Follow the below instructions to make yourself comfortable in using R/RStudio for statistical/scientific computing.
 
-#### Scientific computing
-
-- In **Console**, type and enter `1+1` and you will get
-  ```{r}
-  1+1
-  ```
-
-- Try `2.1*(3.7+4.9)/5.2`, `sin(pi/3)`, `exp(0.8)`, `log(1.0)` and anything. You can now throw away your TI-who-cares calculator!
-
 #### Working directory
 
 Working directory is the default folder in which files are saved and read.
 
 - In the **Files** tab, find/create a folder for your STA100 work. Click **More** then **Set As Working Directory**.
 
-- Download the `template.Rmd` in [Files/templates at STA100 Canvas site ](https://canvas.ucdavis.edu/courses/556874/files/folder/templates) and save it into your working directory. Then, open it by clicking on the `template.Rmd` showed in **Files** tab.
+- Open the R script you worked on last week. Run the codes.
 
-- **Knit** the `template.Rmd` into .pdf and .html respectively. The .pdf and .html file will appear alongside the `template.Rmd`.
-
-#### R scripts
-
-- Click the "little green plus icon" and select **R Script**. Then you obtain a notebook that for your to put R codes. Type some codes, for example
-  ```{r}
-  x <- 10.5
-  y <- 8.1
-  z <- x + y
-  print(z)
-  ```
-  Click **Source** to and see the result `18.6` in **Console**.
-
-- You can also **Run** line by line. Put your cursor to the line your want to run and click **Run**. You can also use hot-key **Command+Enter** in mac (or **Control+Enter** in Windows?).
-
-- Click the floppy icon to save your R script in your working directory. Usually we save R scripts with file extension `.R`, for example, `the_best_script_ever.R`. Now you can shut down your computer and go out to enjoy the sunshine! See you all next week!
-
-- Next week, open your script and work on it again.
+- Working directory is not persistent after you you close the R/RStudio. Remember to set working directory each time you open a R/RStudio.
 
 #### Read data
 
@@ -115,15 +89,6 @@ R has many built-in functions to read data, for example, `read.table()`.
 #### Help/Documentation
 
 Read the R Documentation of the functions you learn today. Enter the following codes, one by one, and read the corresponding documentation/help in the **Help** tab.
-```{r}
-?sin
-```
-```{r}
-?exp
-```
-```{r}
-?log
-```
 ```{r}
 ?read.table
 ```
