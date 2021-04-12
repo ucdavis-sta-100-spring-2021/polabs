@@ -1,3 +1,5 @@
 install.packages("tidyverse")
 install.packages("rmarkdown")
 tinytex::install_tinytex()
+install.packages("swirl")
+swirl::install_course_github("swirldev", "R_Programming_E")
