@@ -1,0 +1,171 @@
+---
+title: "STA100 Lab4"
+author: "Po"
+date: "4/20/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+options(width = 100)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# R and RStudio continue
+
+Follow the below instructions to make yourself comfortable in using R/RStudio for statistical/scientific computing.
+
+### Working directory
+
+Working directory is the default folder in which files are saved and read.
+
+- In the **Files** tab, find/create a folder for your STA100 work. Click **More** then **Set As Working Directory**.
+
+- Open the R script you worked on last week. Run the codes.
+
+- Working directory is not persistent after you you close the R/RStudio. Remember to set working directory each time you open a R/RStudio.
+
+### Read data
+
+R has many built-in functions to read data, for example, `read.table()`.
+
+- Let's try to read the infamous [Fisher's Iris data set](https://en.wikipedia.org/wiki/Iris_flower_data_set).
+
+- Go to the [UCI Machine Learning Repository page of Iris Data Set](https://archive.ics.uci.edu/ml/datasets/Iris). Click the link **Data Folder** and then download the two files `iris.data` and `iris.names`, and then save them into your working directory. T
+```{r}
+lab2_data <- read.table("iris.data", sep = ",")
+```
+  Good job! You have load the data into R. Look the the **Environment** tab. You can see we have just created a variable named `lab2_data`. Click on it and peek what is inside!
+
+- Ops, what are the columns `V1`, `V2`, `V3`, `V4` and `V5`? Open then text file `iris.names` and read the description! They are actually 
+  ```
+     1. sepal length in cm
+     2. sepal width in cm
+     3. petal length in cm
+     4. petal width in cm
+     5. class: 
+        -- Iris Setosa
+        -- Iris Versicolour
+        -- Iris Virginica
+  ```
+  Rename the columns:
+```{r}
+colnames(lab2_data) <- c("sepal_length", "sepal_width", "petal_length", "petal_width", "class")
+```
+  Check `lab2_data` again to see the change.
+  
+- Put the codes
+```{r eval=FALSE}
+lab2_data <- read.table("iris.data", sep = ",")
+colnames(lab2_data) <- c("sepal_length", "sepal_width", "petal_length", "petal_width", "class")
+```
+  into your R script and save it! Now you can shut down your computer and go out to enjoy the sunshine! See you all next week!
+
+### Let's do some statistics!
+  
+- To access a column in a data frame, for example the `sepal_length` column in `lab2_data`, type `lab2_data$sepal_length` or `lab2_data["sepal_length"]`.
+
+- R has lots of built-in functions for statistics. For example, the function `summary()` show you:
+  ```{r}
+  summary(lab2_data)
+  ```
+
+- Let's compute the mean and standard deviation of "sepal length" with functions `median`, `mean()` and `sd()`:
+  ```{r }
+  median(lab2_data$sepal_length)
+  ```
+  ```{r }
+  mean(lab2_data$sepal_length)
+  ```
+  ```{r }
+  sd(lab2_data$sepal_length)
+  ```
+
+- Let's plot a histogram.
+```{r}
+hist(lab2_data$sepal_length,
+     main = "Iris Data Set: Sepal Length in cm",
+     xlab = "cm")
+```
+
+- Let's standardize the sepal length
+```{r fig.height=8}
+mu <- mean(lab2_data$sepal_length)
+sigma <- sd(lab2_data$sepal_length)
+standardized_sepal_length <- (lab2_data$sepal_length - mu)/sigma
+
+par(mfrow=c(2,1))
+hist(lab2_data$sepal_length,
+     breaks = seq(mu-3*sigma, mu+3*sigma,length.out=13),
+     main = "Iris Data Set: Sepal Length in cm",
+     xlab = "cm")
+hist(standardized_sepal_length,
+     breaks = seq(-3, 3, length.out=13),
+     main = "Iris Data Set: Sepal Length standardized",
+     xlab = "Sepal Length standardized")
+```
+
+### Help/Documentation
+
+Read the R Documentation of the functions you learn today. Enter the following codes, one by one, and read the corresponding documentation/help in the **Help** tab.
+```{r}
+?read.table
+```
+```{r}
+?colnames
+```
+```{r}
+?summary
+```
+```{r}
+?median
+```
+```{r}
+?mean
+```
+```{r}
+?sd
+```
+```{r}
+?hist
+```
+```{r}
+?par
+```
+How Po knows all those built-in functions in R?
+
+- Way 1: Google it
+
+- Way 2: Read R Help/Documentation
+
+> Give a man a fish and you feed him for a day; Teach a man to fish and you feed him for a lifetime.
+
+| Po        | Codes in labs | Google   | R Documentation |
+|-----------|---------------|----------|-----------------|
+| Fisherman | Fish          | Fish Rod | Sea             |
+
+#### More R tutorial
+
+- Interactive R course lessons **swirl** https://swirlstats.com/students.html
+
+  Install **swirl** with the following commands.
+  ```{r eval=FALSE}
+  # If you haven't installed the swirl package yet
+  install.packages("swirl")
+  library(swirl)
+  install_course_github("swirldev", "R_Programming_E")
+  ```
+
+  After **swirl** is installed (you only need to do it once), you can start/resume the R tutorial with the commands:
+  ```{r eval=FALSE}
+  library(swirl)
+  swirl()
+  ```
+  Schedule some time to go though all the lessons by yourself! Almost all of the R codes you need to know are here in those lessons.
+
+- If you prefer more static readings (Po did read them to learn R!):
+  - R for Beginners https://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf
+  - An Introduction to R https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf
+
+- If you like RStudio's data science things,
+  - R for Data Science https://r4ds.had.co.nz/
+  - RStudio Primer https://rstudio.cloud/learn/primers/

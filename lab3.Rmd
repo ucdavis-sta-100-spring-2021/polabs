@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 - Go though `LabAssignment1.pdf` [LabAssignment1.pdf](LabAssignment1.pdf)
 
-- Open `LabAssignment1.Rmd` in RStudio and run codes!
+- Download and open `LabAssignment1.Rmd` [LabAssignment1.Rmd](LabAssignment1.Rmd) in RStudio and run codes!
 
 - Open `template.Rmd` and save as a new .Rmd file for your Lab Assignment submission. Edit the author name, date and content. 
 
@@ -38,160 +38,71 @@ Working directory is the default folder in which files are saved and read.
 
 - Working directory is not persistent after you you close the R/RStudio. Remember to set working directory each time you open a R/RStudio.
 
-### Read data
-
-R has many built-in functions to read data, for example, `read.table()`.
-
-- Let's try to read the infamous [Fisher's Iris data set](https://en.wikipedia.org/wiki/Iris_flower_data_set).
-
-- Go to the [UCI Machine Learning Repository page of Iris Data Set](https://archive.ics.uci.edu/ml/datasets/Iris). Click the link **Data Folder** and then download the two files `iris.data` and `iris.names`, and then save them into your working directory. T
-```{r}
-lab2_data <- read.table("iris.data", sep = ",")
-```
-  Good job! You have load the data into R. Look the the **Environment** tab. You can see we have just created a variable named `lab2_data`. Click on it and peek what is inside!
-
-- Ops, what are the columns `V1`, `V2`, `V3`, `V4` and `V5`? Open then text file `iris.names` and read the description! They are actually 
-  ```
-     1. sepal length in cm
-     2. sepal width in cm
-     3. petal length in cm
-     4. petal width in cm
-     5. class: 
-        -- Iris Setosa
-        -- Iris Versicolour
-        -- Iris Virginica
-  ```
-  Rename the columns:
-```{r}
-colnames(lab2_data) <- c("sepal_length", "sepal_width", "petal_length", "petal_width", "class")
-```
-  Check `lab2_data` again to see the change.
-  
-- Put the codes
-```{r eval=FALSE}
-lab2_data <- read.table("iris.data", sep = ",")
-colnames(lab2_data) <- c("sepal_length", "sepal_width", "petal_length", "petal_width", "class")
-```
-  into your R script and save it! Now you can shut down your computer and go out to enjoy the sunshine! See you all next week!
-
-### Let's do some statistics!
-  
-- To access a column in a data frame, for example the `sepal_length` column in `lab2_data`, type `lab2_data$sepal_length` or `lab2_data["sepal_length"]`.
-
-- R has lots of built-in functions for statistics. For example, the function `summary()` show you:
-  ```{r}
-  summary(lab2_data)
-  ```
-
-- Let's compute the mean and standard deviation of "sepal length" with functions `median`, `mean()` and `sd()`:
-  ```{r }
-  median(lab2_data$sepal_length)
-  ```
-  ```{r }
-  mean(lab2_data$sepal_length)
-  ```
-  ```{r }
-  sd(lab2_data$sepal_length)
-  ```
-
-- Let's plot a histogram.
-```{r}
-hist(lab2_data$sepal_length,
-     main = "Iris Data Set: Sepal Length in cm",
-     xlab = "cm")
-```
-
-- Let's standardize the sepal length
-```{r fig.height=8}
-mu <- mean(lab2_data$sepal_length)
-sigma <- sd(lab2_data$sepal_length)
-standardized_sepal_length <- (lab2_data$sepal_length - mu)/sigma
-
-par(mfrow=c(2,1))
-hist(lab2_data$sepal_length,
-     breaks = seq(mu-3*sigma, mu+3*sigma,length.out=13),
-     main = "Iris Data Set: Sepal Length in cm",
-     xlab = "cm")
-hist(standardized_sepal_length,
-     breaks = seq(-3, 3, length.out=13),
-     main = "Iris Data Set: Sepal Length standardized",
-     xlab = "Sepal Length standardized")
-```
-
 ### Simulations/Sampling
 
 - Let's draw a sample of random numbers which follows normal distribution with mean `2.5` and standard deviation `1.2`
-  ```{r}
-  n <- 1000
-  x <- rnorm(n, mean = 2.5, sd = 1.2)
-  ```
-  
-  ```{r}
-  hist(x)
-  ```
-  
-  ```{r}
-  mean(x)
-  ```
-  
-  ```{r}
-  sd(x)
-  ```
+```{r}
+n <- 1000
+x <- rnorm(n, mean = 2.5, sd = 1.2)
+```
+
+```{r}
+hist(x)
+```
+
+```{r}
+mean(x)
+```
+
+```{r}
+sd(x)
+```
 
 
 - Let's draw random samples from BTS
   
   ![](https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/%E2%80%98LG_Q7_BTS_%EC%97%90%EB%94%94%EC%85%98%E2%80%99_%EC%98%88%EC%95%BD_%ED%8C%90%EB%A7%A4_%EC%8B%9C%EC%9E%91_%2842773472410%29_%28cropped%29.jpg/452px-%E2%80%98LG_Q7_BTS_%EC%97%90%EB%94%94%EC%85%98%E2%80%99_%EC%98%88%EC%95%BD_%ED%8C%90%EB%A7%A4_%EC%8B%9C%EC%9E%91_%2842773472410%29_%28cropped%29.jpg){width=15%}
-  ```{r}
-  bts <- c("Jin", "Suga", "J-Hope", "RM", "Jimin", "V", "Jungkook")
-  ```
-  What is the size of `bts`?
-  ```{r}
-  length(bts)
-  ```
+```{r}
+bts <- c("Jin", "Suga", "J-Hope", "RM", "Jimin", "V", "Jungkook")
+```
+What is the size of `bts`?
+```{r}
+length(bts)
+```
+
+Sampling!
+```{r}
+subgroup_a <- sample(bts, 4, replace = FALSE)
+subgroup_b <- sample(bts, 4, replace = FALSE)
+```
+
+```{r}
+subgroup_a
+```
+
+```{r}
+subgroup_b
+```
+
+What are the union and intersection of the subgroups?
+```{r}
+union(subgroup_a, subgroup_b)
+intersect(subgroup_a, subgroup_b)
+```
   
-  Sampling!
-  ```{r}
-  subgroup_a <- sample(bts, 4, replace = FALSE)
-  subgroup_b <- sample(bts, 4, replace = FALSE)
-  ```
-  
-  ```{r}
-  subgroup_a
-  ```
-  
-  ```{r}
-  subgroup_b
-  ```
-  
-  What are the union and intersection of the subgroups?
-  ```{r}
-  union(subgroup_a, subgroup_b)
-  intersect(subgroup_a, subgroup_b)
-  ```
-  
-  | Set                     | Elements                              | Size                      |
-  |-------------------------|---------------------------------------|---------------------------|
-  | BTS (Population)        | `r bts`                               |`r length(bts)`            |
-  | Subgroup A (Sample)     | `r subgroup_a`                        |`r length(subgroup_a)`     |
-  | Subgroup B (Sample)     | `r subgroup_b`                        |`r length(subgroup_b)`     |
-  | A or B (Union)          | `r union(subgroup_a, subgroup_b)`     |`r length(union(subgroup_a, subgroup_b))`     |
-  | A and B (Intersect)     | `r intersect(subgroup_a, subgroup_b)` |`r length(intersect(subgroup_a, subgroup_b))`     |
+| Set                     | Elements                              | Size                                         |
+|-------------------------|---------------------------------------|----------------------------------------------|
+| BTS (Population)        | `r bts`                               |`r length(bts)`                               |
+| Subgroup A (Sample)     | `r subgroup_a`                        |`r length(subgroup_a)`                        |
+| Subgroup B (Sample)     | `r subgroup_b`                        |`r length(subgroup_b)`                        |
+| A or B (Union)          | `r union(subgroup_a, subgroup_b)`     |`r length(union(subgroup_a, subgroup_b))`     |
+| A and B (Intersect)     | `r intersect(subgroup_a, subgroup_b)` |`r length(intersect(subgroup_a, subgroup_b))` |
 
 ### Help/Documentation
 
 Read the R Documentation of the functions you learn today. Enter the following codes, one by one, and read the corresponding documentation/help in the **Help** tab.
 ```{r}
-?read.table
-```
-```{r}
-?colnames
-```
-```{r}
-?summary
-```
-```{r}
-?median
+?rnorm
 ```
 ```{r}
 ?mean
@@ -201,12 +112,6 @@ Read the R Documentation of the functions you learn today. Enter the following c
 ```
 ```{r}
 ?hist
-```
-```{r}
-?par
-```
-```{r}
-?rnorm
 ```
 ```{r}
 ?length
