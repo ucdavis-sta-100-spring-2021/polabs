@@ -10,7 +10,21 @@ options(width = 100)
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# R and RStudio
+# Lab Assignment 1 (Lab projects?)
+
+- Go though `LabAssignment1.pdf` [LabAssignment1.pdf](LabAssignment1.pdf)
+
+- Open `LabAssignment1.Rmd` in RStudio and run codes!
+
+- Open `template.Rmd` and save as a new .Rmd file for your Lab Assignment submission. Edit the author name, date and content. 
+
+- Copy the codes in `LabAssignment1.Rmd` to your new .Rmd file and run the codes.
+
+- Try to modify the codes according to the instruction in `LabAssignment1.pdf`. Run and see if you can get some numbers. Knit to see how the .pdf looks like.
+
+- Tidy up the codes and writings. Knit and submit!
+
+# R and RStudio continue
 
 Follow the below instructions to make yourself comfortable in using R/RStudio for statistical/scientific computing.
 
