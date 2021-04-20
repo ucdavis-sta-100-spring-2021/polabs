@@ -10,15 +10,15 @@ options(width = 100)
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Lab Assignment 2 (Lab projects?)
+# Lab 2 Assignment (Lab projects?)
 
-1. Go though `LabAssignment2.pdf` [LabAssignment2.pdf](LabAssignment2.pdf)
+1. Go though `Lab2Assignment.pdf` [Lab2Assignment.pdf](Lab2Assignment.pdf) (Yup, 2 at middle.)
 
-2. Download and open `LabAssignment2.Rmd` [LabAssignment2.Rmd](LabAssignment2.Rmd) in RStudio and run codes inside. 
+2. Download and open `Lab2Assignment.Rmd` [Lab2Assignment.Rmd](Lab2Assignment.Rmd) in RStudio and run codes inside. 
 
-3. Download, open `LabAssignment2_otg.Rmd` [LabAssignment2_otg.Rmd](LabAssignment2_otg.Rmd) and save as a new Rmd file for your Lab Assignment submission. Knit this Rmd file to see if you can make a html, pdf or words. You should be able to get a document. If you couldn't, just use RStudio Cloud or the Binder RStudio in the lab note homepage. Po likes RStudio. Everything you need is on the cloud.
+3. Download, open `LabAssignment2_otg.Rmd` [Lab2Assignment_otg.Rmd](Lab2Assignment_otg.Rmd) and save as a new Rmd file for your Lab Assignment submission. Knit this Rmd file to see if you can make a html, pdf or words. You should be able to get a document. If you couldn't, just use RStudio Cloud or the Binder RStudio in the lab note homepage. Po likes RStudio. Everything you need is on the cloud.
 
-4. Run/add/edit/delete the codes `LabAssignment2_otg.Rmd` and add/edit/delete some writings. Knit to see how the .pdf looks like.
+4. Run/add/edit/delete the codes in your own copy of `Lab2Assignment_otg.Rmd` and add/edit/delete some writings. Knit to see how the .pdf looks like.
 
 5. Tidy up the codes and writings. Knit and submit!
 
