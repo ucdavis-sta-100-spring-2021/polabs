@@ -1,0 +1,38 @@
+---
+title: "STA100 Lab5"
+author: "Po"
+date: "4/27/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+options(width = 100)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# R tutorials that help you survive in the sea
+
+- Interactive R course lessons **swirl** https://swirlstats.com/students.html
+
+  Install **swirl** with the following commands.
+  ```{r eval=FALSE}
+  # If you haven't installed the swirl package yet
+  install.packages("swirl")
+  library(swirl)
+  install_course_github("swirldev", "R_Programming_E")
+  ```
+
+  After **swirl** is installed (you only need to do it once), you can start/resume the R tutorial with the commands:
+  ```{r eval=FALSE}
+  library(swirl)
+  swirl()
+  ```
+  Schedule some time to go though all the lessons by yourself! Almost all of the R codes you need to know are here in those lessons.
+
+- If you prefer more static readings (Po did read them to learn R!):
+  - R for Beginners https://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf
+  - An Introduction to R https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf
+
+- If you like RStudio's data science things,
+  - R for Data Science https://r4ds.had.co.nz/
+  - RStudio Primer https://rstudio.cloud/learn/primers/

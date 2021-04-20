@@ -1,0 +1,278 @@
+---
+title: "On the Ground"
+author: "Roseanne Park | Match 2021"
+abstract: |
+  *I'm way up in the clouds and they say I've made it now, but I figured it out everything I need is on the ground.*
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+geometry: margin=0.75in
+header-includes:
+  - \usepackage{verbatim,graphicx}
+  - \usepackage{booktabs}
+  - \renewcommand{\abstractname}{}
+---
+
+```{r setup, include=FALSE}
+options(width=80)
+knitr::opts_chunk$set(comment=NA, echo = FALSE)
+pagebreak <- function() {
+  if(knitr::is_latex_output()){return("\\newpage")} else {return('<div style="page-break-before: always;" />')}
+}
+```
+
+# Hey
+
+- Knit this Rmd file to see if you can make a html, pdf or words. You should be able to get a document. If you couldn't, just use RStudio Cloud or the Binder RStudio in the lab note homepage. Po likes RStudio. Everything you need is on the Cloud.
+
+- Click the lovely green triangle button to run the chunks. Read the codes. Read the output. Understand the codes. Understand the data. 
+
+- Sometime, the order of run is important. The most obvious example: you need to load the data and create the variables the for data before doing anything else.
+
+- Edit, add, delete the codes as you need. Things here are just examples.
+
+- Delete and insert words/writings as you need
+
+
+`r pagebreak()`
+
+# Codes in `LabAssignment2.Rmd`
+
+## Data things
+
+```{r}
+# Load the data
+vars <- c("ID","CHD","CAT","AGE","CHL","SMK","ECG","DBP","SBP","HPT","CH","CC")
+evans <- read.table("http://www.stat.ucdavis.edu/~affarris/evans.dat",
+                    header=FALSE,
+                    col.names=vars)
+```
+
+The first 10 lines of the Evans data:
+```{r}
+# Print first 10 lines of the data
+head(evans, 10)
+```
+
+Just let you know we can always put cool words everywhere.
+
+## Age things
+
+```{r}
+# Min, Max, Mean, Median, Quantile of AGE
+summary(evans$AGE)
+```
+
+We set `echo=TRUE` to show off a chunk of R codes.
+```{r, echo=TRUE}
+# Mean and SD
+mean(evans$AGE)
+sd(evans$AGE)
+```
+
+Here is a fancy way to put numbers into sentences: The mean of age is `r mean(evans$AGE)`. The sd of age is `r sd(evans$AGE)`.
+
+```{r}
+# Histogram of AGE
+par(col="red")
+hist(evans$AGE, main = "Histogram of Age", col = "#f4a7bb")
+```
+
+## Contingency Table things
+
+```{r}
+#contingency table of CAT vs CHD
+CatChdTable <- table("High catecholamine level"=evans$CAT,
+                 "Coronary heart disease"=evans$CHD)
+CatChdTable
+```
+
+```{r}
+# mosaic plot of CAT vs CHD
+mosaicplot(CatChdTable,
+           main="Mosaic plot of CAT vs. CHD",
+           col = "#f4a7bb")
+```
+
+## Plot CHL things
+
+```{r}
+# Mean of CHL
+aggregate(CHL~CHD+CAT,
+          data=evans,
+          mean)
+```
+
+```{r}
+# SD of CHL
+aggregate(CHL~CHD+CAT,
+          data=evans,
+          sd)
+```
+
+```{r}
+# box plot of CHL in groups
+boxplot(CHL~CHD+CAT,
+        data=evans,
+        xlab="CHD.CAT",
+        names=c("Jisoo","Jennie","Rosé","Lisa"), 
+        col="#f4a7bb")
+```
+
+```{r fig.height = 8, fig.width = 8, fig.align = "center"}
+par(mfrow=c(2,2))
+
+hist(evans$CHL[evans$CHD==0 & evans$CAT==0], 
+     breaks = seq(min(evans$CHL)-5, max(evans$CHL)+5, length.out = 20),
+     xlab = "CHL", 
+     ylab = "Frequency", 
+     main = "Histogram for CHL with CHD=0 and CAT=0",
+     col = "#f4a7bb")
+
+hist(evans$CHL[evans$CHD==0 & evans$CAT==1], 
+     breaks = seq(min(evans$CHL)-5, max(evans$CHL)+5, length.out = 20),
+     xlab = "CHL", 
+     ylab = "Frequency", 
+     main = "Histogram for CHL with CHD=0 and CAT=1",
+     col = "#f4a7bb")
+
+hist(evans$CHL[evans$CHD==1 & evans$CAT==0], 
+     breaks = seq(min(evans$CHL)-5, max(evans$CHL)+5, length.out = 20),
+     xlab = "CHL", 
+     ylab = "Frequency", 
+     main = "Histogram for CHL with CHD=1 and CAT=0",
+     col = "#f4a7bb")
+
+hist(evans$CHL[evans$CHD==1 & evans$CAT==1], 
+     breaks = seq(min(evans$CHL)-5, max(evans$CHL)+5, length.out = 20),
+     xlab = "CHL", 
+     ylab = "Frequency", 
+     main = "Histogram for CHL with CHD=1 and CAT=1",
+     col = "#f4a7bb")
+```
+
+Just let you know we can make a list like that:
+
+- Jisoo
+
+- Jennie
+
+- Rosé
+
+- Lisa
+
+or a list like that
+
+1. How You Like That
+
+2. Ice Cream
+
+3. Pretty Savage
+
+4. Bet You Wanna
+
+5. Lovesick Girls
+
+6. Crazy Over You
+
+7. Love to Hate Me
+
+8. You Never Know
+
+
+`r pagebreak()`
+
+# Fish
+
+```{r}
+SmkChdTable <- table("Smoking"=evans$SMK,
+                     "Coronary heart disease"=evans$CHD)
+SmkChdTable
+```
+
+```{r}
+mosaicplot(SmkChdTable,
+           main="Mosaic plot of SMK vs. CHD",
+           col = "#f4a7bb")
+```
+
+```{r}
+quantile_age = do.call(data.frame, aggregate(AGE~CHD+SMK,
+          data=evans,
+          quantile))
+quantile_age
+```
+
+```{r}
+boxplot(AGE~CHD+SMK,
+        data=evans,
+        xlab="CHD-SMK",
+        sep = "-",
+        main="Yo",
+        col = "#f4a7bb"
+        )
+```
+
+```{r}
+# Surely Po does all the things to make the table pretty...
+mean_sd_age = aggregate(AGE~CHD+SMK,
+          data=evans,
+          function(x) c(mean(x), sd(x)))
+mean_sd_age=do.call(data.frame, mean_sd_age)
+knitr::kable(mean_sd_age,
+           format = "latex",
+           booktabs = TRUE,
+           longtable = FALSE,
+           col.names = c("CHD", "SMK", "mean AGE", "SD AGE"),
+           caption = "Mean and SD of age
+           between the four groups obtained by heart disease and smoking status")
+```
+
+
+
+```{r fig.height = 8, fig.width = 8, fig.align = "center"}
+par(mfrow=c(2,2))
+
+hist(evans$AGE[evans$CHD==0 & evans$SMK==0], 
+     breaks = seq(min(evans$AGE)-5, max(evans$AGE)+5, by=4),
+     ylim = c(0, 80),
+     xlab = "AGE", 
+     ylab = "Frequency", 
+     main = "Histogram for AGE with CHD=0 and SMK=0",
+     col = "#f4a7bb")
+
+hist(evans$AGE[evans$CHD==0 & evans$SMK==1], 
+     breaks = seq(min(evans$AGE)-5, max(evans$AGE)+5, by=4),
+     ylim = c(0, 80),
+     xlab = "AGE", 
+     ylab = "Frequency", 
+     main = "Histogram for AGE with CHD=0 and SMK=1", 
+     col = "#f4a7bb")
+
+hist(evans$AGE[evans$CHD==1 & evans$SMK==0], 
+     breaks = seq(min(evans$AGE)-5, max(evans$AGE)+5, by=4),
+     ylim = c(0, 10),
+     xlab = "AGE", 
+     ylab = "Frequency", 
+     main = "Histogram for AGE with CHD=1 and SMK=0",
+     col = "#f4a7bb")
+
+hist(evans$AGE[evans$CHD==1 & evans$SMK==1], 
+     breaks = seq(min(evans$AGE)-5, max(evans$AGE)+5, by=4),
+     ylim = c(0, 10),
+     xlab = "AGE", 
+     ylab = "Frequency", 
+     main = "Histogram for AGE with CHD=1 and SMK=1", 
+     col = "#f4a7bb")
+```
+
+
+
+
+
+`r pagebreak()`
+# Appendix: R Script
+
+```{r all-code, ref.label=setdiff(knitr::all_labels(), c("setup")), echo=TRUE, eval=FALSE}
+```

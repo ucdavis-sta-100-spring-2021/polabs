@@ -1,0 +1,56 @@
+---
+title: "RMarkdown Template"
+author: "L. Gulliver | May 1707"
+abstract: |
+  *This is an example template for an RMarkdown document. Please read the instructions in Rmd file `template2.Rmd`.*
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+geometry: margin=0.75in
+header-includes:
+  - \renewcommand{\abstractname}{}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(comment=NA, echo = FALSE)
+pagebreak <- function() {
+  if(knitr::is_latex_output()){return("\\newpage")} else {return('<div style="page-break-before: always;" />')}
+}
+```
+
+# Introduction
+This is an example template.
+
+## R code
+
+We can include
+
+```{r echo=TRUE}
+ACharacterVector <- c("some","code","in","a","code","chunk.",
+                      "For example,",
+                      "this prints out the current date and time: \n")
+cat(paste(c(ACharacterVector,date()), collapse=" "))
+```
+
+As nice as it is for pedagogical purposes to show the code in these chunks, is also possible -- and indeed, typically more professional looking -- to hide the code by omitting the chunk option `echo=TRUE`, and then to print its result out using inline code.
+
+```{r}
+ThisIsTheDate <- date()
+```
+For example, the date and time is now `r ThisIsTheDate`.
+
+Notice that when the code chunks are hidden, we can automatically display the code in an appendix by including the code at the end of the .Rmd file used to creat this document.
+
+We can include plots too, for example the one below.
+
+```{r fig.height = 3, fig.width = 4, fig.align = "center"}
+plot(dlnorm, main="This is a plot!!")
+```
+
+
+`r pagebreak()`
+# Appendix: R Script
+
+```{r all-code, ref.label=setdiff(knitr::all_labels(), c("setup")), echo=TRUE, eval=FALSE}
+```

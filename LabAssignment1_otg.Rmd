@@ -1,0 +1,69 @@
+---
+title: "On the Ground"
+author: "Roseanne Park | Match 2021"
+abstract: |
+  *My life's been magic, seems fantastic. I used to have a hole in the wall with a mattress. Funny when you want it, suddenly you have it. You find out that your gold's just plastic.*
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+geometry: margin=0.75in
+header-includes:
+  - \renewcommand{\abstractname}{}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(comment=NA, echo = FALSE)
+pagebreak <- function() {
+  if(knitr::is_latex_output()){return("\\newpage \\hrulefill")} else {return('<div style="page-break-before: always;" />')}
+}
+```
+
+# Test sensitivity
+
+```{r}
+CheckOnce <- function(FullSequence,TestRef,readLength){
+        # Randomly sample a location on the genome to read
+        RandomIndex <- sample(1:(nchar(FullSequence) - readLength + 1),1)
+        RandomSnippet <- substr(FullSequence, RandomIndex, RandomIndex + readLength - 1)
+        # Check to see if it contains the ref. string
+        grepl(TestRef,RandomSnippet) 
+} 
+Test <- function(FullSequence,TestRef,readLength,numReps){
+        # Repeat the test numReps times;
+        # if any find the reference, return +
+        Reps <- replicate(numReps,CheckOnce(FullSequence,TestRef,readLength)) 
+        ifelse(any(Reps),"+","-")
+}
+```
+
+```{r}
+SeqLines <- readLines("http://www.stat.ucdavis.edu/~affarris/CovidRef.txt")
+CovSequence <- paste(SeqLines[-1], collapse="")
+RefSubseq <- substr(CovSequence,27202,27387)
+```
+
+In a simulation with
+
+- Reference subsequence the subsequence from nucleotide 27202 to 27387 of the MN908947.3 complete genome
+
+- test sequences of length 3000
+
+- 12 random reads
+
+- 1000 replications of the test
+
+we have the following result:
+```{r}
+repl1000 <- replicate(1000,Test(CovSequence,RefSubseq,3000,12))
+results <- table(repl1000)
+results
+```
+
+We would estimate that this test has a sensitivity of about $\frac{ `r results[2]` }{  `r results[1]` + `r results[2]` } \approx `r round(results[2]/(results[1] + results[2]),2)`$.
+
+`r pagebreak()`
+# Appendix: R Script
+
+```{r all-code, ref.label=setdiff(knitr::all_labels(), c("setup")), echo=TRUE, eval=FALSE}
+```
