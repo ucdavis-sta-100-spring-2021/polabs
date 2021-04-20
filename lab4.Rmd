@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Lab Assignment 2 (Lab projects?)
 
-1. Go though `LabAssignment2.pdf` [LabAssignment2.pdf](LabAssignment1.pdf)
+1. Go though `LabAssignment2.pdf` [LabAssignment2.pdf](LabAssignment2.pdf)
 
 2. Download and open `LabAssignment2.Rmd` [LabAssignment2.Rmd](LabAssignment2.Rmd) in RStudio and run codes inside. 
 
