@@ -6,3 +6,4 @@ Launch RStudio with Binder: [![Binder](http://mybinder.org/badge_logo.svg)](http
 - [Lab 2](https://ucdavis-sta-100-spring-2021.github.io/polabs/lab2.html) 
 - [Lab 3](https://ucdavis-sta-100-spring-2021.github.io/polabs/lab3.html) 
 - [Lab 4](https://ucdavis-sta-100-spring-2021.github.io/polabs/lab4.html) 
+- [Lab 5](https://ucdavis-sta-100-spring-2021.github.io/polabs/lab5.html) 

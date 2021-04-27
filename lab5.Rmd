@@ -7,10 +7,130 @@ output: html_document
 
 ```{r setup, include=FALSE}
 options(width = 100)
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE )
 ```
 
-# R tutorials that help you survive in the sea
+# Panda Village
+
+![](https://static.wikia.nocookie.net/kungfupanda/images/6/63/Panda-village2.jpg)
+
+1. Po visits the Panda Village. He captures **10 pandas** and marks their butts with paint.
+
+2. A week later he returns to the village and captures **15 pandas**. **Five of these 15 pandas** have paint on their butts, indicating that they are recaptured pandas.
+
+3. Can you guess/estimate the **total numbers of pandas** in the Panda Village?
+
+   Poll: 
+   
+   - 20
+   
+   - 30
+   
+   - 40
+
+```{r echo=FALSE, fig.height = 6, fig.width = 10}
+possibleN <- c(20, 30, 40)
+panda_col <- hcl.colors(length(possibleN), palette = "TealGrn")
+barplot(t(sapply(possibleN, function(N) dhyper(0:10, 10, N-10, 15))),
+        beside=TRUE,
+        main = paste0("Recapture probability of 10 marked pandas when population N = 20, 30, 40"),
+        ylab = "Probability",
+        xlab = "number of recaptured marked pandas out of 15 pandas",
+        col=panda_col,
+        names=0:10)
+legend("topleft", legend = paste0("N=", possibleN), fill=panda_col) 
+```
+```{r echo=FALSE, fig.height = 7, fig.width = 10}
+possibleN <- 20:40
+panda_col <- hcl.colors(length(possibleN), palette = "TealGrn")
+barplot(t(sapply(possibleN, function(N) dhyper(4:6, 10, N-10, 15))),
+        beside=TRUE,
+        main = paste0("Recapture probability of 10 marked pandas when population N = 20, 21, ..., 40"),
+        ylab = "Probability",
+        xlab = "number of recaptured marked pandas out of 15 pandas",
+        col=panda_col,
+        bty='L',
+        names=4:6)
+legend("topright", legend = paste0("N=", possibleN), fill=panda_col) 
+```
+
+```{r fig.height = 8, fig.width = 8}
+hyperLik <- function(N,M,n,m){dhyper(m,M,N-M,n)}
+possibleN <- 20:40
+likelihoods <- hyperLik(possibleN, 10, 15, 5)
+plot(possibleN,likelihoods,
+     type="l", 
+     ylab="Likelihood",
+     xlab="N",
+     main = "Likelihood of N")
+```
+
+For more information aobut **Mark and recapture**, you may read [Wikipedia: Mark and recapture](https://en.wikipedia.org/wiki/Mark_and_recapture).
+
+# Lab Assignment 3 (Lab projects?)
+
+1. Go though `LabAssignment3.pdf` [LabAssignment3.pdf](LabAssignment3.pdf)
+
+2. Download and open `LabAssignment3.Rmd` [LabAssignment3.Rmd](LabAssignment3.Rmd) in RStudio and run codes inside. Things should be exactly same as `LabAssignment3.pdf`.
+
+3. Download, open `LabAssignment3_otg.Rmd` [LabAssignment3_jp.Rmd](LabAssignment3_jp.Rmd) and save as a new Rmd file for your own Lab Assignment submission. Knit this Rmd file to see if you can make a html, pdf or words. If you couldn't, just use RStudio Cloud or the Binder RStudio [![Binder](http://mybinder.org/badge_logo.svg)](http://mybinder.org/v2/gh/ucdavis-sta-100-spring-2021/polabs/main?urlpath=rstudio) set by Po.
+
+4. Run/add/edit/delete the codes in your own copy of `LabAssignment3_jp.Rmd` and add/edit/delete some writings. Knit to see how the .pdf looks like. Tidy up the codes and writings. Knit and submit!
+
+### Help/Documentation
+
+Read the R Documentation of the functions you learn today. Enter the following codes, one by one, and read the corresponding documentation/help in the **Help** tab.
+```{r eval=FALSE}
+?dhyper
+```
+```{r eval=FALSE}
+?plot
+```
+```{r eval=FALSE}
+?which.max
+```
+```{r eval=FALSE}
+?read.table
+```
+```{r eval=FALSE}
+?c
+```
+```{r eval=FALSE}
+?head
+```
+```{r eval=FALSE}
+?mean
+```
+```{r eval=FALSE}
+?sd
+```
+```{r eval=FALSE}
+?summary
+```
+```{r eval=FALSE}
+?hist
+```
+```{r eval=FALSE}
+?table
+```
+```{r eval=FALSE}
+?mosaicplot
+```
+```{r}
+?boxplot
+```
+```{r}
+?aggregate
+```
+How Po knows all those built-in functions in R?
+
+- Way 1: Google it
+
+- Way 2: Read R Help/Documentation
+
+> There is no secret ingredient. -- Mr. Ping
+
+# R tutorials that help you survive in Panda Village
 
 - Interactive R course lessons **swirl** https://swirlstats.com/students.html
 
@@ -36,3 +156,4 @@ knitr::opts_chunk$set(echo = TRUE)
 - If you like RStudio's data science things,
   - R for Data Science https://r4ds.had.co.nz/
   - RStudio Primer https://rstudio.cloud/learn/primers/
+

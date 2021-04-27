@@ -1,0 +1,92 @@
+---
+title: "Jade Palace"
+author: "Oogway |  January 2016"
+abstract: |
+  *Your mind is like this water my friend, when it is agitated it becomes difficult to see. But if you allow it to settle, the answer becomes clear.*
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+geometry: margin=0.75in
+header-includes:
+  - \usepackage{verbatim,graphicx}
+  - \usepackage{booktabs}
+  - \renewcommand{\abstractname}{}
+---
+
+```{r setup, include=FALSE}
+options(width=80)
+knitr::opts_chunk$set(comment=NA, echo = FALSE)
+pagebreak <- function() {
+  if(knitr::is_latex_output()){return("\\newpage")} else {return('<div style="page-break-before: always;" />')}
+}
+```
+
+# Hey
+
+- Knit this Rmd file to see if you can make a html or pdf. If you couldn't, just use RStudio Cloud or the Binder RStudio in the lab note homepage. Po loves RStudio. Everything you need is on the Cloud.
+
+- Edit, add, delete the codes as you need. Delete and insert words/writings as you need.
+
+`r pagebreak()`
+
+# Codes in `LabAssignment3.Rmd`
+
+```{r}
+hyperLik <- function(N,M,n,m){dhyper(m,M,N-M,n)}
+```
+
+```{r}
+hyperLik(50, 10, 20, 4)
+```
+
+```{r}
+hyperLik(100, 10, 20, 4)
+```
+
+```{r}
+possibleN <- 26:50
+likelihoods <- hyperLik(possibleN,10,20,4)
+plot(possibleN,likelihoods,
+     type="l", # linear interpolation for a smooth curve
+     ylab="Likelihood",
+     xlab="Possible population size")
+```
+
+```{r}
+possibleN <- 26:150
+likelihoods <- hyperLik(possibleN,10,20,4)
+plot(possibleN,likelihoods,
+     type="l", 
+     ylab="Likelihood",
+     xlab="Possible population size")
+```
+
+```{r}
+est <- possibleN[which.max(likelihoods)]
+est
+```
+
+# Panda Village example
+
+```{r}
+possibleN <- 20:50
+likelihoods <- hyperLik(possibleN, 10, 15, 5)
+plot(possibleN,likelihoods,
+     type="l", 
+     ylab="Likelihood",
+     xlab="Possible population size")
+```
+
+```{r}
+est <- possibleN[which.max(likelihoods)]
+```
+
+Based on maximum likelihood estimation, we estimate that the population size of pandas in Panda Village is `r est`.
+
+
+`r pagebreak()`
+# Appendix: R Script
+
+```{r all-code, ref.label=setdiff(knitr::all_labels(), c("setup")), echo=TRUE, eval=FALSE}
+```
