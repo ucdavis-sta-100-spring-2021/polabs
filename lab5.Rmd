@@ -20,13 +20,13 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE )
 
 3. Can you guess/estimate the **total numbers of pandas** in the Panda Village?
 
-   Poll: 
+   Poll:
    
-   - 20
+   - $N=20$ `r emo::ji("panda")`
    
-   - 30
+   - $N=30$ `r emo::ji("panda")`
    
-   - 40
+   - $N=40$ `r emo::ji("panda")`
 
 ```{r echo=FALSE, fig.height = 6, fig.width = 10}
 possibleN <- c(20, 30, 40)
@@ -53,6 +53,7 @@ barplot(t(sapply(possibleN, function(N) dhyper(4:6, 10, N-10, 15))),
         names=4:6)
 legend("topright", legend = paste0("N=", possibleN), fill=panda_col) 
 ```
+Based on maximum likelihoodk, what N would you pick if you recapture 4, 5 or 6 pandas?
 
 ```{r fig.height = 8, fig.width = 8}
 hyperLik <- function(N,M,n,m){dhyper(m,M,N-M,n)}
@@ -128,9 +129,9 @@ How Po knows all those built-in functions in R?
 
 - Way 2: Read R Help/Documentation
 
-> There is no secret ingredient. -- Mr. Ping
+> There is no secret ingredient. -- Mr. Ping `r emo::ji("noodle")`
 
-# R tutorials that help you survive in Panda Village
+# R tutorials that help you survive in Panda Village `r emo::ji("bamboo")`
 
 - Interactive R course lessons **swirl** https://swirlstats.com/students.html
 
