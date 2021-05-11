@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE )
 
 # Lab Assignment 4 (Lab projects?)
 
-1. Go though `LabAssignment4.pdf` [LabAssignment4.pdf](LabAssignment3.pdf)
+1. Go though `LabAssignment4.pdf` [LabAssignment4.pdf](LabAssignment4.pdf)
 
 2. Download `LabAssignment4.Rmd` [LabAssignment4.Rmd](LabAssignment4.Rmd) [Me](LabAssignment4.Rmd) [MendelFigure1.png](MendelFigure1.png) [MendelFigure2.png](MendelFigure2.png)  in RStudio and run codes inside. Things should be exactly same as `LabAssignment4.pdf`.
 
