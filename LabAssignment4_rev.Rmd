@@ -2,7 +2,7 @@
 title: "Mold"
 author: "Miranda | August 1919"
 abstract: |
-  *Your mind is like this water my friend, when it is agitated it becomes difficult to see. But if you allow it to settle, the answer becomes clear.*
+  *Long long ago, I went searching for berries. Within the darkness, cold and silent, a voice called out to me 'Hello lost child, come quench your thirst and drink this pint, to bring you joy.'*
 output:
   pdf_document: default
   html_document:
