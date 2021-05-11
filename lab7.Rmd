@@ -1,0 +1,103 @@
+---
+title: "STA100 Lab7"
+author: "Po"
+date: "6/11/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+require(pander)
+options(width = 100)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE )
+```
+
+# Lab Assignment 4 (Lab projects?)
+
+1. Go though `LabAssignment4.pdf` [LabAssignment4.pdf](LabAssignment3.pdf)
+
+2. Download `LabAssignment4.Rmd` [LabAssignment4.Rmd](LabAssignment4.Rmd) [Me](LabAssignment4.Rmd) [MendelFigure1.png](MendelFigure1.png) [MendelFigure2.png](MendelFigure2.png)  in RStudio and run codes inside. Things should be exactly same as `LabAssignment4.pdf`.
+
+3. Download, open `LabAssignment4_rev.Rmd` [LabAssignment4_rev.Rmd](LabAssignment3_jp.Rmd) and save as a new Rmd file for your own Lab Assignment submission. Knit this Rmd file to see if you can make a html, pdf or words. If you couldn't, just use RStudio Cloud or the Binder RStudio [![Binder](http://mybinder.org/badge_logo.svg)](http://mybinder.org/v2/gh/ucdavis-sta-100-spring-2021/polabs/main?urlpath=rstudio) set by Po.
+
+4. Run/add/edit/delete the codes in your own copy of `LabAssignment4_rev.Rmd` and add/edit/delete some writings. Knit to see how the .pdf looks like. Tidy up the codes and writings. Knit and submit!
+
+Pearson's chi-squared test
+
+https://en.wikipedia.org/wiki/Pearson%27s_chi-squared_test
+
+Hardcoding in `LabAssignment4.pdf`
+```{r echo=TRUE}
+NullRatio <- c(1,1,1,1,2,2,2,2,4)
+NullProportion <- NullRatio/sum(NullRatio) # converting ratios to proportions
+Observed <- c(38,35,28,30,65,68,60,67,138) # from Mendel's table
+Expected <-sum(Observed)*NullProportion # converting proportions to Expected counts
+Discrepancy <- (Expected-Observed)^2/Expected
+TestStat <- sum(Discrepancy) # chi-squared test statistic
+p_value <- 1-pchisq(TestStat,9-1) # don't forget the degrees of freedom!
+pander(c(TestStat=TestStat, p_value=p_value))
+```
+
+Using R built-in function `chisq.test`
+```{r echo=TRUE}
+NullRatio <- c(1,1,1,1,2,2,2,2,4)
+Observed <- c(38,35,28,30,65,68,60,67,138)
+pander(chisq.test(Observed, p = NullRatio, rescale.p = TRUE))
+```
+
+# Help/Documentation
+
+> There is no secret ingredient. 
+> -- Mr. Ping `r emo::ji("noodle")`
+
+Read the R Documentation of every functions you have seen.
+```{r eval=FALSE}
+?c
+```
+```{r eval=FALSE}
+?rbind
+```
+```{r eval=FALSE}
+?sum
+```
+```{r eval=FALSE}
+?pchisq
+```
+```{r eval=FALSE}
+?pander
+```
+```{r eval=FALSE}
+?chisq.test
+```
+How Po knows all those built-in functions in R?
+
+- Way 1: Google it
+
+- Way 2: Read R Help/Documentation
+
+# R tutorials that help you survive in Village `r emo::ji("mushroom")`
+
+- Interactive R course lessons **swirl** https://swirlstats.com/students.html
+
+  Install **swirl** with the following commands.
+  ```{r eval=FALSE}
+  # If you haven't installed the swirl package yet
+  install.packages("swirl")
+  library(swirl)
+  install_course_github("swirldev", "R_Programming_E")
+  ```
+
+  After **swirl** is installed (you only need to do it once), you can start/resume the R tutorial with the commands:
+  ```{r eval=FALSE}
+  library(swirl)
+  swirl()
+  ```
+  Schedule some time to go though all the lessons by yourself! Almost all of the R codes you need to know are here in those lessons.
+
+- If you prefer more static readings (Po did read them to learn R!):
+  - R for Beginners https://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf
+  - An Introduction to R https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf
+
+- If you like RStudio's data science things,
+  - R for Data Science https://r4ds.had.co.nz/
+  - RStudio Primer https://rstudio.cloud/learn/primers/
+
