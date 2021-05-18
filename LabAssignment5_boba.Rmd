@@ -9,7 +9,7 @@ output:
     df_print: paged
 geometry: margin=0.75in
 header-includes:
-  - \usepackage{enumerate,verbatim,graphicx,soul,booktabs}
+  - \usepackage{booktabs}
   - \renewcommand{\abstractname}{}
 ---
 
