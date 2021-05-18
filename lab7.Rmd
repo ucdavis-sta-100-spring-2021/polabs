@@ -1,7 +1,7 @@
 ---
 title: "STA100 Lab7"
 author: "Po"
-date: "6/11/2021"
+date: "5/11/2021"
 output: html_document
 ---
 

@@ -1,0 +1,61 @@
+---
+title: "Lady Tasting Tea"
+author: "Muriel Bristol | April 1888"
+abstract: |
+  *Cause we're living boba life*
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+geometry: margin=0.75in
+header-includes:
+  - \usepackage{enumerate,verbatim,graphicx,soul,booktabs}
+  - \renewcommand{\abstractname}{}
+---
+
+```{r setup, include=FALSE}
+options(width=80)
+knitr::opts_chunk$set(comment=NA, echo = FALSE)
+pagebreak <- function() {
+  if(knitr::is_latex_output()){return("\\newpage")} else {return('<div style="page-break-before: always;" />')}
+}
+```
+
+# Hey
+
+- Knit this Rmd file to see if you can make a html or pdf. If you couldn't, just use RStudio Cloud or the Binder RStudio in the lab note homepage. Po loves RStudio. Everything you need is on the Cloud.
+
+- Edit, add, delete the codes as you need. Delete and insert words/writings as you need.
+
+`r pagebreak()`
+
+# Codes in `LabAssignment5.Rmd`
+
+## Part I
+
+```{r echo=TRUE}
+#### Part I
+counts <- matrix(c(8,87,3,23),2,2)
+rownames(counts) <- c("Asthma","No asthma")
+colnames(counts) <- c("Resolved","Persistent")
+pVal <- fisher.test(counts)$p.val
+knitr::kable(counts)
+```
+Based on the data, the p-value of Fisher's exact test is `r round(pVal,4)`.
+
+## Part II
+
+```{r echo=TRUE}
+### Part II
+SeroprevalenceTable <- matrix(c(369,2,3280,50),2,2)
+rownames(SeroprevalenceTable) <- c("Negative","Positive")
+colnames(SeroprevalenceTable) <- c("Manufacturer", "Stanford")
+knitr::kable(SeroprevalenceTable)
+```
+
+
+`r pagebreak()`
+# Appendix: R Script
+
+```{r all-code, ref.label=setdiff(knitr::all_labels(), c("setup")), echo=TRUE, eval=FALSE}
+```
