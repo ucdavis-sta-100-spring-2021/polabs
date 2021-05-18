@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE )
 
 2. Download `LabAssignment5.Rmd` [LabAssignment5.Rmd](LabAssignment5.Rmd) in RStudio and run codes inside. Things should be exactly same as `LabAssignment5.pdf`.
 
-3. Download, open `LabAssignment5_boba.Rmd` [LabAssignment5_boba.Rmd](LabAssignment5_rev.Rmd) and save as a new Rmd file for your own Lab Assignment submission. Knit this Rmd file to see if you can make a html, pdf or words. If you couldn't, just use RStudio Cloud or the Binder RStudio [![Binder](http://mybinder.org/badge_logo.svg)](http://mybinder.org/v2/gh/ucdavis-sta-100-spring-2021/polabs/main?urlpath=rstudio) set by Po.
+3. Download, open `LabAssignment5_boba.Rmd` [LabAssignment5_boba.Rmd](LabAssignment5_boba.Rmd) and save as a new Rmd file for your own Lab Assignment submission. Knit this Rmd file to see if you can make a html, pdf or words. If you couldn't, just use RStudio Cloud or the Binder RStudio [![Binder](http://mybinder.org/badge_logo.svg)](http://mybinder.org/v2/gh/ucdavis-sta-100-spring-2021/polabs/main?urlpath=rstudio) set by Po.
 
 4. Run/add/edit/delete the codes in your own copy of `LabAssignment5_boba.Rmd` and add/edit/delete some writings. Knit to see how the .pdf looks like. Tidy up the codes and writings. Knit and submit!
 
