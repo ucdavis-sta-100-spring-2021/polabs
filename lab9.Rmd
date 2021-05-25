@@ -1,0 +1,137 @@
+---
+title: "STA100 Lab9"
+author: "Po"
+date: "5/25/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+require(pander)
+options(width = 100)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE )
+```
+
+# Lab Assignment 6 (Lab projects?)
+
+1. Go though `LabAssignment6.pdf` [LabAssignment6.pdf](LabAssignment6.pdf)
+
+2. Download `LabAssignment6.Rmd` ([LabAssignment6.Rmd](LabAssignment6.Rmd), [egyptianCotton.csv](egyptianCotton.csv)) in RStudio and run codes inside. Things should be exactly same as `LabAssignment6.pdf`.
+
+3. Download, open `LabAssignment6_butter.Rmd` [LabAssignment6_butter.Rmd](LabAssignment6_butter.Rmd) and save as a new Rmd file for your own Lab Assignment submission. Knit this Rmd file to see if you can make a HTML, PDF or Word. If you couldn't, just use RStudio Cloud or the Binder RStudio [![Binder](http://mybinder.org/badge_logo.svg)](http://mybinder.org/v2/gh/ucdavis-sta-100-spring-2021/polabs/main?urlpath=rstudio) set by Po.
+
+4. Run/add/edit/delete the codes in your own copy of `LabAssignment6_butter.Rmd` and add/edit/delete some writings. Knit to see how the .pdf looks like. Tidy up the codes and writings. Knit and submit!
+
+# Path for data/files/success
+
+1. Set working directory.
+
+2. Put you data [egyptianCotton.csv](egyptianCotton.csv) into a good directory. 
+
+3. `r emo::ji("bar_chart")` Which of the following do you prefer?
+   
+   `r emo::ji("turkey")`
+    ```{r eval=FALSE}
+    ec <- read.csv("/Users/nicepo/IU_is_no1/egyptianCotton.csv")
+    ```
+   
+   `r emo::ji("duck")`
+    ```{r eval=FALSE}
+    ec <- read.csv("C:\\Users\\nicepo\\IU_is_no1\\egyptianCotton.csv")
+    ```
+
+    `r emo::ji("peacock")`
+    ```{r eval=FALSE}
+    ec <- read.csv("egyptianCotton.csv")
+    ```
+  
+    `r emo::ji("owl")`
+    ```{r eval=FALSE}
+    ec <- read.csv("data/egyptianCotton.csv")
+    ```
+
+    `r emo::ji("swan")`
+    ```{r eval=FALSE}
+    ec <- read.csv("https://ucdavis-sta-100-spring-2021.github.io/polabs/egyptianCotton.csv")
+    ```
+
+4. Understand your path for success!
+    [https://en.wikipedia.org/wiki/Path_(computing)](https://en.wikipedia.org/wiki/Path_(computing))
+
+# Help/Documentation
+
+> There is no secret ingredient. 
+> -- Mr. Ping `r emo::ji("noodle")`
+
+Read the R Documentation of every functions you have seen.
+
+```{r eval=FALSE}
+?rnorm
+```
+```{r eval=FALSE}
+?dim
+```
+
+```{r eval=FALSE}
+?read.csv
+```
+```{r}
+?head
+```
+
+```{r eval=FALSE}
+?anova
+```
+```{r eval=FALSE}
+?aov
+```
+```{r}
+?TukeyHSD
+```
+
+```{r eval=FALSE}
+?par
+```
+```{r eval=FALSE}
+?boxplot
+```
+```{r eval=FALSE}
+?hist
+```
+```{r eval=FALSE}
+?plot
+```
+
+
+How Po knows all those built-in functions in R?
+
+- Way 1: Google it
+
+- Way 2: Read R Help/Documentation
+
+# R tutorials that help you survive `r emo::ji("turkey")`
+
+- Interactive R course lessons **swirl** https://swirlstats.com/students.html
+
+  Install **swirl** with the following commands.
+  ```{r eval=FALSE}
+  # If you haven't installed the swirl package yet
+  install.packages("swirl")
+  library(swirl)
+  install_course_github("swirldev", "R_Programming_E")
+  ```
+
+  After **swirl** is installed (you only need to do it once), you can start/resume the R tutorial with the commands:
+  ```{r eval=FALSE}
+  library(swirl)
+  swirl()
+  ```
+  Schedule some time to go though all the lessons by yourself! Almost all of the R codes you need to know are here in those lessons.
+
+- If you prefer more static readings (Po did read them to learn R!):
+  - R for Beginners https://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf
+  - An Introduction to R https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf
+
+- If you like RStudio's data science things,
+  - R for Data Science https://r4ds.had.co.nz/
+  - RStudio Primer https://rstudio.cloud/learn/primers/
+
