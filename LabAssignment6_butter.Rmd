@@ -1,0 +1,120 @@
+---
+title: "Butter"
+author: "RM | May 2021"
+abstract: |
+  *I'm the nice guy*
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+geometry: margin=0.75in
+header-includes:
+  - \usepackage{booktabs}
+  - \renewcommand{\abstractname}{}
+---
+
+```{r setup, include=FALSE}
+options(width=80)
+knitr::opts_chunk$set(comment=NA, echo = FALSE)
+pagebreak <- function() {
+  if(knitr::is_latex_output()){return("\\newpage")} else {return('<div style="page-break-before: always;" />')}
+}
+```
+
+# Hey
+
+- Knit this Rmd file to see if you can make a html or pdf. If you couldn't, just use RStudio Cloud or the Binder RStudio in the lab note homepage. Po loves RStudio. Everything you need is on the Cloud.
+
+- Edit, add, delete the codes as you need. Delete and insert words/writings as you need.
+
+`r pagebreak()`
+
+# Codes in `LabAssignment6.Rmd`
+
+## Part 1
+
+Load data and peek.
+```{r echo=TRUE}
+#### Part I
+ec <- read.csv("egyptianCotton.csv")
+head(ec)
+```
+
+Fit ANOVA model
+```{r echo=TRUE}
+fittedModel <- aov(Luminance ~ Variety, 
+                   data = ec
+                   )
+```
+
+Model diagnostic 
+```{r echo=TRUE}
+par(mfrow=c(1,2)) ## two side-by-side plots
+boxplot(Luminance ~ Variety, 
+        data = ec,
+        xlab="",
+        las = 2 ## vertical labels
+        )
+hist(fittedModel$residuals,
+     ylab="Frequency",
+     xlab="Residual",
+     main=""
+     )
+normalData <- rnorm(dim(ec)[1])
+resids <- aov(normalData~Variety, data=ec)$residuals
+hist(resids)
+```
+
+Compute/show cool statistics things
+```{r echo=TRUE}
+anova(fittedModel)
+tuky <- TukeyHSD(fittedModel, 
+                 conf.level = 0.99
+                 )
+par(mar=c(5,6,4,1)+1.2) ## so that labels don't get cut off
+plot(tuky, 
+     las=1 ## horizontal labels
+     )
+```
+
+`r pagebreak()`
+
+## Part II
+
+Data is [\textcolor{blue}{AnesthesiaVentilation.csv}](http://www.stat.ucdavis.edu/~affarris/AnesthesiaVentilation.csv)
+
+```{r echo=TRUE}
+av <- read.csv("AnesthesiaVentilation.csv")
+# Or read.csv("http://www.stat.ucdavis.edu/~affarris/AnesthesiaVentilation.csv")
+head(av, 10)
+```
+```{r echo=TRUE}
+boxplot(folate ~ ventilation, 
+        data = av,
+        main = "Po is a nice guy."
+        )
+```
+
+```{r echo=TRUE}
+fittedModel <- aov(folate ~ ventilation, 
+                   data = av
+                   )
+anova(fittedModel)
+```
+
+```{r echo=TRUE}
+tuky <- TukeyHSD(fittedModel, 
+                 conf.level = 0.99
+                 )
+par(mar=c(5,12,4,2)+0.1)
+plot(tuky, 
+     las=1 ## horizontal labels
+     )
+```
+
+
+`r pagebreak()`
+# Appendix: R Script
+
+```{r all-code, ref.label=setdiff(knitr::all_labels(), c("setup")), echo=TRUE, eval=FALSE}
+```
