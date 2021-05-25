@@ -2,7 +2,7 @@
 title: "Butter"
 author: "RM | May 2021"
 abstract: |
-  *I'm the nice guy*
+  *I'm the nice guy.*
 output:
   pdf_document: default
   html_document:
@@ -53,16 +53,18 @@ par(mfrow=c(1,2)) ## two side-by-side plots
 boxplot(Luminance ~ Variety, 
         data = ec,
         xlab="",
-        las = 2 ## vertical labels
+        las = 2, ## vertical labels
+        col = "#F8DC4A"
         )
 hist(fittedModel$residuals,
      ylab="Frequency",
      xlab="Residual",
-     main=""
+     main="",
+     col = "#F8DC4A"
      )
 normalData <- rnorm(dim(ec)[1])
 resids <- aov(normalData~Variety, data=ec)$residuals
-hist(resids)
+hist(resids, col = "#F8DC4A")
 ```
 
 Compute/show cool statistics things
@@ -91,7 +93,8 @@ head(av, 10)
 ```{r echo=TRUE}
 boxplot(folate ~ ventilation, 
         data = av,
-        main = "Po is a nice guy."
+        main = "Po is a nice guy.",
+        col = "#F8DC4A"
         )
 ```
 
